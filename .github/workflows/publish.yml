@@ -171,12 +171,10 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            # Only version, no revision
-            type=match,pattern=v(.*)-(.*),group=1
+            # version
+            type=match,pattern=v(.*),group=1
             # branch
             type=ref,event=branch
-            # semver
-            type=semver,pattern={{version}}
       - id: meta-dockerhub-tag
         name: Metadata - Docker Hub (Tags)
         uses: docker/metadata-action@v4
@@ -187,7 +185,7 @@ jobs:
             latest=false
           tags: |
             # Only version, no revision
-            type=match,pattern=v(.*)-(.*),group=1
+            type=match,pattern=v(.*),group=1
       - id: meta-ghcr
         name: Metadata - GHCR
         uses: docker/metadata-action@v4
@@ -196,12 +194,10 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            # Only version, no revision
-            type=match,pattern=v(.*)-(.*),group=1
+            # version
+            type=match,pattern=v(.*),group=1
             # branch
             type=ref,event=branch
-            # semver
-            type=semver,pattern={{version}}
       - id: meta-ghcr-tag
         name: Metadata - GHCR (Tags)
         uses: docker/metadata-action@v4
@@ -211,8 +207,8 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            # Only version, no revision
-            type=match,pattern=v(.*)-(.*),group=1
+            # version
+            type=match,pattern=v(.*),group=1
 
       # First, create manifests and push to GHCR
 
