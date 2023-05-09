@@ -52,7 +52,7 @@ RUN wget https://downloads.haskell.org/~ghc/${GHC_VERSION}/ghc-${GHC_VERSION}-$(
 # Libsodium
 RUN git clone https://github.com/input-output-hk/libsodium && \
     cd libsodium && \
-    git checkout 66f017f1 && \
+    git checkout dbb48cce && \
     ./autogen.sh && \
     ./configure && \
     make && \
