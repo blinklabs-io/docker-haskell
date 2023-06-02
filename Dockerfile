@@ -1,6 +1,8 @@
 FROM debian:stable-slim as builder
-ARG CABAL_VERSION=3.6.2.0
+ARG CABAL_VERSION=3.10.1.0
 ARG GHC_VERSION=8.10.7
+ARG LIBSODIUM_REF=dbb48cce
+ARG SECP256K1_REF=ac83be33
 
 WORKDIR /code
 
@@ -52,7 +54,7 @@ RUN wget https://downloads.haskell.org/~ghc/${GHC_VERSION}/ghc-${GHC_VERSION}-$(
 # Libsodium
 RUN git clone https://github.com/input-output-hk/libsodium && \
     cd libsodium && \
-    git checkout dbb48cce && \
+    git checkout ${LIBSODIUM_REF} && \
     ./autogen.sh && \
     ./configure && \
     make && \
@@ -63,7 +65,7 @@ ENV PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 # secp256k1
 RUN git clone https://github.com/bitcoin-core/secp256k1 && \
     cd secp256k1 && \
-    git checkout ac83be33 && \
+    git checkout ${SECP256K1_REF} && \
     ./autogen.sh && \
     ./configure --enable-module-schnorrsig --enable-experimental && \
     make && \
