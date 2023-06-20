@@ -1,4 +1,4 @@
-FROM debian:stable-slim as builder
+FROM debian:bookworm-slim as builder
 ARG CABAL_VERSION=3.8.1.0
 ARG GHC_VERSION=8.10.7
 ARG LIBSODIUM_REF=dbb48cce
