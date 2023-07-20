@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as builder
+FROM debian:bookworm-slim as builder
 ARG CABAL_VERSION=3.6.2.0
 ARG GHC_VERSION=8.10.7
 
