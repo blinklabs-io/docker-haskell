@@ -3,6 +3,7 @@ ARG CABAL_VERSION=3.8.1.0
 ARG GHC_VERSION=8.10.7
 ARG LIBSODIUM_REF=dbb48cce
 ARG SECP256K1_REF=ac83be33
+ARG BLST_REF=v0.3.10
 
 WORKDIR /code
 
@@ -70,5 +71,17 @@ RUN git clone https://github.com/bitcoin-core/secp256k1 && \
     ./configure --enable-module-schnorrsig --enable-experimental && \
     make && \
     make install
+
+# BLST
+COPY libblst.pc /usr/local/lib/pkgconfig/
+RUN git clone https://github.com/supranational/blst && \
+    cd blst && \
+    git checkout ${BLST_REF} && \
+    ./build.sh && \
+    cp bindings/blst_aux.h bindings/blst.h bindings/blst.hpp  /usr/local/include/ && \
+    cp libblst.a /usr/local/lib/ && \
+    chmod u=rw,go=r /usr/local/lib/pkgconfig/libblst.pc \
+      /usr/local/include/blst_aux.h /usr/local/include/blst.h /usr/local/include/blst.hpp \
+      /usr/local/lib/libblst.a
 
 FROM builder as haskell
