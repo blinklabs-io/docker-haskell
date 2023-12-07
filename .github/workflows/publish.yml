@@ -39,7 +39,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ runner.arch }}-buildx-
       - id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: |
             ${{ env.DOCKER_IMAGE_NAME }}
@@ -104,7 +104,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ runner.arch }}-buildx-
       - id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: |
             ${{ env.DOCKER_IMAGE_NAME }}
@@ -165,7 +165,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - id: meta-dockerhub
         name: Metadata - Docker Hub
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.DOCKER_IMAGE_NAME }}
           flavor: |
@@ -177,7 +177,7 @@ jobs:
             type=ref,event=branch
       - id: meta-dockerhub-tag
         name: Metadata - Docker Hub (Tags)
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: |
             ${{ env.DOCKER_IMAGE_NAME }}
@@ -188,7 +188,7 @@ jobs:
             type=match,pattern=v(.*),group=1
       - id: meta-ghcr
         name: Metadata - GHCR
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.GHCR_IMAGE_NAME }}
           flavor: |
@@ -200,7 +200,7 @@ jobs:
             type=ref,event=branch
       - id: meta-ghcr-tag
         name: Metadata - GHCR (Tags)
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: |
             ${{ env.GHCR_IMAGE_NAME }}
