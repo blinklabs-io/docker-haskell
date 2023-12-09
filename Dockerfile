@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim as builder
 ARG CABAL_VERSION=3.8.1.0
-ARG GHC_VERSION=8.10.7
+ARG GHC_VERSION=9.6.3
 ARG LIBSODIUM_REF=dbb48cce
 ARG SECP256K1_REF=ac83be33
 ARG BLST_REF=v0.3.10
@@ -38,7 +38,7 @@ ENV GHC_VERSION=${GHC_VERSION}
 RUN wget https://downloads.haskell.org/~ghc/${GHC_VERSION}/ghc-${GHC_VERSION}-$(uname -m)-deb10-linux.tar.xz \
     && tar -xf ghc-${GHC_VERSION}-$(uname -m)-deb10-linux.tar.xz \
     && rm ghc-${GHC_VERSION}-$(uname -m)-deb10-linux.tar.xz \
-    && cd ghc-${GHC_VERSION} \
+    && cd ghc-${GHC_VERSION}-$(uname -m)-unknown-linux \
     && ./configure \
     && make install
 
