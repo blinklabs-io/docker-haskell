@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim as builder
+FROM debian:bookworm-slim AS builder
 ARG CABAL_VERSION=3.12.1.0
 ARG GHC_VERSION=9.6.6
 ARG LIBSODIUM_REF=dbb48cce
@@ -84,4 +84,4 @@ RUN git clone https://github.com/supranational/blst && \
       /usr/local/include/blst_aux.h /usr/local/include/blst.h /usr/local/include/blst.hpp \
       /usr/local/lib/libblst.a
 
-FROM builder as haskell
+FROM builder AS haskell
