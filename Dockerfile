@@ -1,11 +1,15 @@
 FROM debian:bookworm-slim AS builder
 ARG CABAL_VERSION=3.12.1.0
-ARG GHC_VERSION=9.6.6
+ARG GHC_VERSION=9.6.7
 ARG LIBSODIUM_REF=dbb48cce
 ARG SECP256K1_REF=v0.3.2
 ARG BLST_REF=v0.3.14
 
 WORKDIR /code
+
+# UTF-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 # system dependencies
 ENV DEBIAN_FRONTEND=noninteractive
@@ -21,6 +25,7 @@ RUN apt-get update -y && \
     libssl-dev \
     libsystemd-dev \
     libtinfo-dev \
+    liburing-dev \
     llvm-dev \
     zlib1g-dev \
     make \
