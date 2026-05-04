@@ -37,7 +37,8 @@ RUN apt-get update -y && \
     wget \
     libncursesw5 \
     libtool \
-    autoconf
+    autoconf \
+    protobuf-compiler
 
 # GHC
 ENV GHC_VERSION=${GHC_VERSION}
