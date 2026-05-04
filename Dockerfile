@@ -22,6 +22,7 @@ RUN apt-get update -y && \
     libgmp-dev \
     liblmdb-dev \
     libnuma-dev \
+    libsnappy-dev \
     libssl-dev \
     libsystemd-dev \
     libtinfo-dev \
