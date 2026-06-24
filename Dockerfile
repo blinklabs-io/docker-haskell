@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim AS builder
-ARG CABAL_VERSION=3.12.1.0
-ARG GHC_VERSION=9.6.7
+ARG CABAL_VERSION=3.14.2.0
+ARG GHC_VERSION=9.12.3
 ARG LIBSODIUM_REF=dbb48cce
 ARG SECP256K1_REF=v0.3.2
 ARG BLST_REF=v0.3.14
@@ -42,9 +42,9 @@ RUN apt-get update -y && \
 
 # GHC
 ENV GHC_VERSION=${GHC_VERSION}
-RUN wget https://downloads.haskell.org/~ghc/${GHC_VERSION}/ghc-${GHC_VERSION}-$(uname -m)-deb10-linux.tar.xz \
-    && tar -xf ghc-${GHC_VERSION}-$(uname -m)-deb10-linux.tar.xz \
-    && rm ghc-${GHC_VERSION}-$(uname -m)-deb10-linux.tar.xz \
+RUN wget https://downloads.haskell.org/~ghc/${GHC_VERSION}/ghc-${GHC_VERSION}-$(uname -m)-deb12-linux.tar.xz \
+    && tar -xf ghc-${GHC_VERSION}-$(uname -m)-deb12-linux.tar.xz \
+    && rm ghc-${GHC_VERSION}-$(uname -m)-deb12-linux.tar.xz \
     && cd ghc-${GHC_VERSION}-$(uname -m)-unknown-linux \
     && ./configure \
     && make install
@@ -52,9 +52,9 @@ RUN wget https://downloads.haskell.org/~ghc/${GHC_VERSION}/ghc-${GHC_VERSION}-$(
 # cabal
 ENV CABAL_VERSION=${CABAL_VERSION}
 ENV PATH="/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:$PATH"
-RUN wget https://downloads.haskell.org/~cabal/cabal-install-${CABAL_VERSION}/cabal-install-${CABAL_VERSION}-$(uname -m)-linux-deb10.tar.xz \
-    && tar -xf cabal-install-${CABAL_VERSION}-$(uname -m)-linux-deb10.tar.xz \
-    && rm cabal-install-${CABAL_VERSION}-$(uname -m)-linux-deb10.tar.xz \
+RUN wget https://downloads.haskell.org/~cabal/cabal-install-${CABAL_VERSION}/cabal-install-${CABAL_VERSION}-$(uname -m)-linux-deb12.tar.xz \
+    && tar -xf cabal-install-${CABAL_VERSION}-$(uname -m)-linux-deb12.tar.xz \
+    && rm cabal-install-${CABAL_VERSION}-$(uname -m)-linux-deb12.tar.xz \
     && mkdir -p ~/.local/bin \
     && mv cabal ~/.local/bin/ \
     && cabal update && cabal --version
