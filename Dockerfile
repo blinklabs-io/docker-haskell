@@ -17,6 +17,7 @@ RUN apt-get update -y && \
   apt-get install -y \
     automake \
     build-essential \
+    ca-certificates \
     pkg-config \
     libffi-dev \
     libgmp-dev \
