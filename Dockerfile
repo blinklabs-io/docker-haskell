@@ -17,6 +17,7 @@ RUN apt-get update -y && \
   apt-get install -y \
     automake \
     build-essential \
+    ca-certificates \
     pkg-config \
     libffi-dev \
     libgmp-dev \
@@ -67,8 +68,8 @@ RUN git clone https://github.com/input-output-hk/libsodium && \
     ./configure && \
     make && \
     make install
-ENV LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-ENV PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+ENV LD_LIBRARY_PATH="/usr/local/lib"
+ENV PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 
 # secp256k1
 RUN git clone https://github.com/bitcoin-core/secp256k1 && \
